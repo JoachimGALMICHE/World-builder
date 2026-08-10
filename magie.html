@@ -8,7 +8,23 @@
 <script src="https://unpkg.com/lucide@latest"></script>
 <link rel="stylesheet" href="shared/style.css">
 </head>
-<body class="h-screen w-full flex flex-col md:flex-row bg-amber-50 text-amber-900 overflow-hidden">
+<body class="h-screen w-full overflow-hidden bg-amber-50 text-amber-900">
+
+<div id="auth-gate" class="fixed inset-0 z-50 bg-amber-50 flex items-center justify-center p-6">
+  <div class="w-full max-w-sm bg-white border border-amber-200 rounded-lg p-6">
+    <div class="flex items-center gap-3 mb-5">
+      <div class="w-9 h-9 shrink-0 rounded-sm bg-red-700 flex items-center justify-center text-white font-display text-base leading-none">界</div>
+      <div class="font-display text-lg tracking-widest">CODEX</div>
+    </div>
+    <form id="auth-form" class="space-y-3">
+      <input id="auth-email" type="email" required placeholder="Email" class="w-full bg-amber-50 border border-amber-300 rounded-md px-3 py-2 text-sm outline-none focus:ring-2 focus:ring-red-200" />
+      <input id="auth-password" type="password" required placeholder="Mot de passe" class="w-full bg-amber-50 border border-amber-300 rounded-md px-3 py-2 text-sm outline-none focus:ring-2 focus:ring-red-200" />
+      <button type="submit" class="w-full bg-red-700 hover:bg-red-800 text-white font-medium py-2 rounded-md text-sm transition-colors">Se connecter</button>
+      <p id="auth-error" class="text-xs text-rose-700"></p>
+    </form>
+  </div>
+</div>
+<div id="app-root" class="hidden h-screen w-full flex flex-col md:flex-row">
 <div class="md:hidden flex items-center gap-2 overflow-x-auto px-3 py-2 border-b border-amber-200 bg-amber-50 shrink-0">
 <a href="monde.html" class="flex items-center gap-1.5 px-3 py-1.5 rounded-md text-xs whitespace-nowrap border border-transparent text-amber-500"><i data-lucide="map" style="width:13px;height:13px"></i> Monde & Géographie</a><a href="bestiaire.html" class="flex items-center gap-1.5 px-3 py-1.5 rounded-md text-xs whitespace-nowrap border border-transparent text-amber-500"><i data-lucide="paw-print" style="width:13px;height:13px"></i> Bestiaire</a><a href="magie.html" class="flex items-center gap-1.5 px-3 py-1.5 rounded-md text-xs whitespace-nowrap border border-transparent bg-amber-200 text-amber-900"><i data-lucide="sparkles" style="width:13px;height:13px"></i> Magie</a><a href="politique.html" class="flex items-center gap-1.5 px-3 py-1.5 rounded-md text-xs whitespace-nowrap border border-transparent text-amber-500"><i data-lucide="crown" style="width:13px;height:13px"></i> Politique & Factions</a><a href="chronologie.html" class="flex items-center gap-1.5 px-3 py-1.5 rounded-md text-xs whitespace-nowrap border border-transparent text-amber-500"><i data-lucide="clock" style="width:13px;height:13px"></i> Chronologie</a><a href="personnages.html" class="flex items-center gap-1.5 px-3 py-1.5 rounded-md text-xs whitespace-nowrap border border-transparent text-amber-500"><i data-lucide="users" style="width:13px;height:13px"></i> Personnages</a>
 </div><aside class="hidden md:flex md:w-60 shrink-0 flex-col border-r border-amber-200 bg-amber-50">
@@ -50,7 +66,9 @@
       <button id="export-btn" class="w-full flex items-center justify-center gap-2 text-xs text-amber-500 hover:text-amber-800 bg-white border border-amber-300 hover:border-amber-400 rounded-md py-2 transition-colors">
         <i data-lucide="download" style="width:13px;height:13px"></i> Exporter en JSON
       </button>
-      <p class="text-xs text-amber-500 leading-relaxed">Site hébergé : les données sont stockées dans le navigateur (localStorage) de chaque visiteur. Exporte régulièrement.</p>
+      <button data-sign-out class="w-full flex items-center justify-center gap-2 text-xs text-amber-500 hover:text-rose-700 bg-white border border-amber-300 hover:border-rose-300 rounded-md py-2 transition-colors">
+        <i data-lucide="log-out" style="width:13px;height:13px"></i> Se déconnecter
+      </button>
     </div>
   </aside>
   <div class="flex-1 flex flex-col overflow-hidden min-w-0">
@@ -78,8 +96,14 @@
 <div id="drawer-overlay" class="fixed inset-0 bg-black/40 z-30 hidden"></div>
 <div id="drawer" class="drawer-open hidden fixed inset-y-0 right-0 z-40 w-full max-w-md bg-white border-l border-amber-200 flex flex-col shadow-2xl"></div>
 
+</div>
+    <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-auth-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore-compat.js"></script>
+  <script src="shared/firebase-init.js"></script>
+  <script src="shared/auth.js"></script>
   <script src="shared/data.js"></script>
   <script src="shared/app.js"></script>
-  <script>initCategoryPage('magie');</script>
+  <script>initAuthGate(() => initCategoryPage('magie'));</script>
 </body>
 </html>
