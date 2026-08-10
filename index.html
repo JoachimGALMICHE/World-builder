@@ -13,36 +13,36 @@
 <script src="https://unpkg.com/lucide@latest"></script>
 <link rel="stylesheet" href="style.css?v=2">
 </head>
-<body class="min-h-screen w-full bg-amber-50 text-amber-900">
+<body class="min-h-screen w-full bg-[#2a1310] text-[#f5e6d3]">
 
-  <div id="auth-gate" class="fixed inset-0 z-50 bg-amber-50 flex items-center justify-center p-6">
-    <div class="w-full max-w-sm bg-white border border-amber-200 rounded-lg p-6">
+  <div id="auth-gate" class="fixed inset-0 z-50 bg-[#2a1310] flex items-center justify-center p-6">
+    <div class="w-full max-w-sm bg-[#3d1e17] border border-[#5c2e22] rounded-lg p-6">
       <div class="flex items-center gap-3 mb-5">
         <div class="w-9 h-9 shrink-0 rounded-sm bg-red-700 flex items-center justify-center text-white font-display text-base leading-none">界</div>
         <div class="font-display text-lg tracking-widest">CODEX</div>
       </div>
       <form id="auth-form" class="space-y-3">
-        <input id="auth-email" type="email" required placeholder="Email" class="w-full bg-amber-50 border border-amber-300 rounded-md px-3 py-2 text-sm outline-none focus:ring-2 focus:ring-red-200" />
-        <input id="auth-password" type="password" required placeholder="Mot de passe" class="w-full bg-amber-50 border border-amber-300 rounded-md px-3 py-2 text-sm outline-none focus:ring-2 focus:ring-red-200" />
-        <button type="submit" class="w-full bg-red-700 hover:bg-red-800 text-white font-medium py-2 rounded-md text-sm transition-colors">Se connecter</button>
-        <p id="auth-error" class="text-xs text-rose-700"></p>
+        <input id="auth-email" type="email" required placeholder="Email" class="w-full bg-[#2a1310] border border-[#6b3529] rounded-md px-3 py-2 text-sm outline-none focus:ring-2 focus:ring-orange-500/40" />
+        <input id="auth-password" type="password" required placeholder="Mot de passe" class="w-full bg-[#2a1310] border border-[#6b3529] rounded-md px-3 py-2 text-sm outline-none focus:ring-2 focus:ring-orange-500/40" />
+        <button type="submit" class="btn-flame w-full font-medium py-2 rounded-md text-sm">Se connecter</button>
+        <p id="auth-error" class="text-xs text-red-400"></p>
       </form>
     </div>
   </div>
 
   <div id="app-root" class="hidden">
-    <header class="border-b border-amber-200 bg-white">
+    <header class="border-b border-[#5c2e22] bg-[#3d1e17]">
       <div class="max-w-5xl mx-auto px-6 py-6 flex items-center gap-3">
         <div class="w-11 h-11 shrink-0 rounded-sm bg-red-700 flex items-center justify-center text-white font-display text-lg leading-none">界</div>
         <div>
           <div class="font-display text-2xl tracking-widest leading-none">CODEX</div>
-          <div class="text-xs text-amber-500 mt-1">Atelier de world-building</div>
+          <div class="text-xs text-[#b8916a] mt-1">Atelier de world-building</div>
         </div>
         <div class="flex-1"></div>
-        <button id="export-btn" class="flex items-center gap-2 text-xs text-amber-600 hover:text-amber-900 bg-white border border-amber-300 hover:border-amber-400 rounded-md px-3 py-2 transition-colors">
+        <button id="export-btn" class="flex items-center gap-2 text-xs text-[#cda87e] hover:text-[#f5e6d3] bg-[#3d1e17] border border-[#6b3529] hover:border-[#8a4433] rounded-md px-3 py-2 transition-colors">
           <i data-lucide="download" style="width:13px;height:13px"></i> Exporter en JSON
         </button>
-        <button data-sign-out class="flex items-center gap-2 text-xs text-amber-600 hover:text-rose-700 bg-white border border-amber-300 hover:border-rose-300 rounded-md px-3 py-2 transition-colors">
+        <button data-sign-out class="flex items-center gap-2 text-xs text-[#cda87e] hover:text-red-400 bg-[#3d1e17] border border-[#6b3529] hover:border-rose-300 rounded-md px-3 py-2 transition-colors">
           <i data-lucide="log-out" style="width:13px;height:13px"></i> Se déconnecter
         </button>
       </div>
@@ -50,21 +50,21 @@
 
     <main class="max-w-5xl mx-auto px-6 py-10">
       <div class="relative max-w-md mb-8">
-        <div class="absolute left-3 top-1/2 -translate-y-1/2 text-amber-400"><i data-lucide="search" style="width:15px;height:15px"></i></div>
-        <input id="search-input" placeholder="Rechercher dans tout le monde…" class="w-full bg-white border border-amber-300 rounded-md pl-9 pr-3 py-2 text-sm placeholder-amber-400 outline-none focus:ring-2 focus:ring-red-200" />
+        <div class="absolute left-3 top-1/2 -translate-y-1/2 text-[#9c7452]"><i data-lucide="search" style="width:15px;height:15px"></i></div>
+        <input id="search-input" placeholder="Rechercher dans tout le monde…" class="w-full bg-[#3d1e17] border border-[#6b3529] rounded-md pl-9 pr-3 py-2 text-sm placeholder-[#7a5a42] outline-none focus:ring-2 focus:ring-orange-500/40" />
       </div>
       <div id="search-results" class="hidden mb-10"></div>
 
       <div id="category-grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4"></div>
 
-      <p class="text-xs text-amber-500 mt-10 max-w-2xl leading-relaxed">
+      <p class="text-xs text-[#b8916a] mt-10 max-w-2xl leading-relaxed">
         Les données sont synchronisées en temps réel via Firestore et protégées par connexion. Exporte régulièrement en JSON pour garder une sauvegarde.
       </p>
     </main>
   </div>
 
-  <div id="drawer-overlay" class="fixed inset-0 bg-black/40 z-30 hidden"></div>
-  <div id="drawer" class="drawer-open hidden fixed inset-y-0 right-0 z-40 w-full max-w-md bg-white border-l border-amber-200 flex flex-col shadow-2xl"></div>
+  <div id="drawer-overlay" class="fixed inset-0 bg-black/55 z-30 hidden"></div>
+  <div id="drawer" class="drawer-open hidden fixed inset-y-0 right-0 z-40 w-full max-w-md bg-[#3d1e17] border-l border-[#5c2e22] flex flex-col shadow-2xl"></div>
 
   <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-app-compat.js"></script>
   <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-auth-compat.js"></script>
@@ -81,12 +81,12 @@
         const grid = document.getElementById('category-grid');
         grid.innerHTML = CATEGORIES.map((c) => {
           const col = COLOR_MAP[c.color];
-          return `<a href="${c.page}" class="bg-white hover:bg-amber-50 border border-amber-200 border-l-4 ${col.left} rounded-r-lg rounded-l-sm p-5 transition-colors block">
+          return `<a href="${c.page}" class="bg-[#3d1e17] hover:bg-[#2a1310] border border-[#5c2e22] border-l-4 ${col.left} rounded-r-lg rounded-l-sm p-5 transition-colors block">
             <div class="flex items-center gap-2 mb-2">
               <div class="${col.text}">${icon(c.icon, 20)}</div>
-              <h2 class="font-display text-lg text-amber-900">${esc(c.label)}</h2>
+              <h2 class="font-display text-lg text-[#f5e6d3]">${esc(c.label)}</h2>
             </div>
-            <p class="text-sm text-amber-500 font-mono">${countFor(c.key)} fiche${countFor(c.key) > 1 ? 's' : ''}</p>
+            <p class="text-sm text-[#b8916a] font-mono">${countFor(c.key)} fiche${countFor(c.key) > 1 ? 's' : ''}</p>
           </a>`;
         }).join('');
         refreshIcons();

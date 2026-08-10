@@ -1,23 +1,45 @@
 @import url('https://fonts.googleapis.com/css2?family=Ma+Shan+Zheng&family=ZCOOL+QingKe+HuangYou&family=JetBrains+Mono:wght@400;500&display=swap');
 
-body { font-family: 'ZCOOL QingKe HuangYou', serif; }
+body { font-family: 'ZCOOL QingKe HuangYou', serif; background: #2a1310; }
 .font-mono { font-family: 'JetBrains Mono', monospace; }
 
 .font-display {
   font-family: 'Ma Shan Zheng', cursive;
   letter-spacing: 0.03em;
-  background: linear-gradient(90deg, #047857, #be123c, #047857);
-  background-size: 200% auto;
+  background: linear-gradient(90deg, #ffd875, #d4af37, #b91c1c, #ffd875);
+  background-size: 300% auto;
   -webkit-background-clip: text;
   background-clip: text;
   color: transparent;
   -webkit-text-fill-color: transparent;
-  animation: gradientMove 6s linear infinite;
+  animation: gradientMove 5s linear infinite;
 }
-@keyframes gradientMove { to { background-position: 200% center; } }
+@keyframes gradientMove { to { background-position: 300% center; } }
 
 #drawer.drawer-open { animation: slideIn 0.22s ease-out; }
 @keyframes slideIn { from { transform: translateX(100%); } to { transform: translateX(0); } }
+
+/* Boutons "flamme magique" — réservés aux actions principales (créer, se connecter) */
+.btn-flame {
+  background: linear-gradient(180deg, #ffe9a8 0%, #ffb347 30%, #e8542a 65%, #8a1c10 100%);
+  background-size: 100% 220%;
+  color: #2a0f08;
+  text-shadow: 0 1px 1px rgba(255,255,255,0.35);
+  border: 1px solid #ffcf6b;
+  box-shadow: 0 0 10px 2px rgba(255,140,40,0.55), 0 0 22px 5px rgba(217,43,43,0.35), inset 0 0 6px rgba(255,255,255,0.3);
+  animation: flameFlicker 2.4s ease-in-out infinite;
+  transition: box-shadow 0.2s, transform 0.15s, background-position 0.2s;
+}
+.btn-flame:hover {
+  background-position: 0 20%;
+  box-shadow: 0 0 16px 4px rgba(255,170,60,0.8), 0 0 30px 8px rgba(217,43,43,0.5), inset 0 0 8px rgba(255,255,255,0.4);
+  transform: translateY(-1px);
+}
+.btn-flame:active { transform: translateY(0); }
+@keyframes flameFlicker {
+  0%, 100% { box-shadow: 0 0 10px 2px rgba(255,140,40,0.5), 0 0 22px 5px rgba(217,43,43,0.32), inset 0 0 6px rgba(255,255,255,0.3); }
+  50% { box-shadow: 0 0 15px 3px rgba(255,175,70,0.7), 0 0 26px 7px rgba(217,43,43,0.42), inset 0 0 7px rgba(255,255,255,0.35); }
+}
 
 @media (prefers-reduced-motion: reduce) {
   * { animation: none !important; transition: none !important; }

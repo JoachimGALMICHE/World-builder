@@ -6,12 +6,12 @@
 /* Les données sont maintenant stockées dans Firestore (voir shared/firebase-init.js) */
 
 const COLOR_MAP = {
-  gold:     { text: 'text-amber-700',   border: 'border-amber-200',   ring: 'focus:border-amber-400',   bgSoft: 'bg-amber-50',   bgActive: 'bg-amber-100/70',   left: 'border-amber-400' },
-  jade:     { text: 'text-emerald-700', border: 'border-emerald-200', ring: 'focus:border-emerald-400', bgSoft: 'bg-emerald-50', bgActive: 'bg-emerald-100/70', left: 'border-emerald-400' },
-  silver:   { text: 'text-slate-600',   border: 'border-slate-200',   ring: 'focus:border-slate-400',   bgSoft: 'bg-slate-50',   bgActive: 'bg-slate-100/70',   left: 'border-slate-300' },
-  garnet:   { text: 'text-rose-800',    border: 'border-rose-200',    ring: 'focus:border-rose-400',    bgSoft: 'bg-rose-50',    bgActive: 'bg-rose-100/70',    left: 'border-rose-400' },
-  ink:      { text: 'text-stone-700',   border: 'border-stone-300',   ring: 'focus:border-stone-500',   bgSoft: 'bg-stone-100',  bgActive: 'bg-stone-200/70',   left: 'border-stone-400' },
-  bronze:   { text: 'text-orange-800',  border: 'border-orange-200',  ring: 'focus:border-orange-400',  bgSoft: 'bg-orange-50',  bgActive: 'bg-orange-100/70',  left: 'border-orange-400' },
+  gold:     { text: 'text-[#f0cf82]', border: 'border-amber-700/50',   ring: 'focus:border-amber-400',   bgSoft: 'bg-amber-900/25',   bgActive: 'bg-amber-800/35',   left: 'border-amber-500' },
+  jade:     { text: 'text-emerald-300', border: 'border-emerald-700/50', ring: 'focus:border-emerald-400', bgSoft: 'bg-emerald-900/25', bgActive: 'bg-emerald-800/35', left: 'border-emerald-500' },
+  silver:   { text: 'text-slate-300',   border: 'border-slate-500/50',   ring: 'focus:border-slate-400',   bgSoft: 'bg-slate-700/30',   bgActive: 'bg-slate-600/40',   left: 'border-slate-400' },
+  garnet:   { text: 'text-rose-300',    border: 'border-rose-700/50',    ring: 'focus:border-rose-400',    bgSoft: 'bg-rose-900/25',    bgActive: 'bg-rose-800/35',    left: 'border-rose-500' },
+  ink:      { text: 'text-stone-300',   border: 'border-stone-500/50',   ring: 'focus:border-stone-400',   bgSoft: 'bg-stone-700/30',   bgActive: 'bg-stone-600/40',   left: 'border-stone-400' },
+  bronze:   { text: 'text-orange-300',  border: 'border-orange-700/50',  ring: 'focus:border-orange-400',  bgSoft: 'bg-orange-900/25',  bgActive: 'bg-orange-800/35',  left: 'border-orange-500' },
 };
 
 const RELIEF_TYPES = ['Montagnes', 'Chaînes montagneuses', 'Volcans', 'Plaines', 'Déserts', 'Forêts', 'Marécages', 'Vallées', 'Falaises', 'Grottes', 'Cavernes', 'Plateaux', 'Glaciers'];
@@ -378,7 +378,7 @@ const Store = {
       (err) => {
         console.error('Erreur Firestore :', err);
         const el = document.getElementById('content') || document.body;
-        el.innerHTML = '<div class="p-6 text-sm text-rose-700">Impossible de se connecter à Firestore. Vérifie la config (shared/firebase-init.js) et les règles de sécurité.</div>';
+        el.innerHTML = '<div class="p-6 text-sm text-red-400">Impossible de se connecter à Firestore. Vérifie la config (shared/firebase-init.js) et les règles de sécurité.</div>';
       }
     );
   },
