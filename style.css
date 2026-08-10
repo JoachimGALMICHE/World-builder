@@ -1,0 +1,24 @@
+@import url('https://fonts.googleapis.com/css2?family=Ma+Shan+Zheng&family=ZCOOL+QingKe+HuangYou&family=JetBrains+Mono:wght@400;500&display=swap');
+
+body { font-family: 'ZCOOL QingKe HuangYou', serif; }
+.font-mono { font-family: 'JetBrains Mono', monospace; }
+
+.font-display {
+  font-family: 'Ma Shan Zheng', cursive;
+  letter-spacing: 0.03em;
+  background: linear-gradient(90deg, #047857, #be123c, #047857);
+  background-size: 200% auto;
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  -webkit-text-fill-color: transparent;
+  animation: gradientMove 6s linear infinite;
+}
+@keyframes gradientMove { to { background-position: 200% center; } }
+
+#drawer.drawer-open { animation: slideIn 0.22s ease-out; }
+@keyframes slideIn { from { transform: translateX(100%); } to { transform: translateX(0); } }
+
+@media (prefers-reduced-motion: reduce) {
+  * { animation: none !important; transition: none !important; }
+}

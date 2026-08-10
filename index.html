@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Codex — Atelier de world-building</title>
+<script src="https://cdn.tailwindcss.com"></script>
+<script src="https://unpkg.com/lucide@latest"></script>
+<link rel="stylesheet" href="shared/style.css">
+</head>
+<body class="min-h-screen w-full bg-amber-50 text-amber-900">
+
+  <header class="border-b border-amber-200 bg-white">
+    <div class="max-w-5xl mx-auto px-6 py-6 flex items-center gap-3">
+      <div class="w-11 h-11 shrink-0 rounded-sm bg-red-700 flex items-center justify-center text-white font-display text-lg leading-none">界</div>
+      <div>
+        <div class="font-display text-2xl tracking-widest leading-none">CODEX</div>
+        <div class="text-xs text-amber-500 mt-1">Atelier de world-building</div>
+      </div>
+      <div class="flex-1"></div>
+      <button id="export-btn" class="flex items-center gap-2 text-xs text-amber-600 hover:text-amber-900 bg-white border border-amber-300 hover:border-amber-400 rounded-md px-3 py-2 transition-colors">
+        <i data-lucide="download" style="width:13px;height:13px"></i> Exporter en JSON
+      </button>
+    </div>
+  </header>
+
+  <main class="max-w-5xl mx-auto px-6 py-10">
+    <div class="relative max-w-md mb-8">
+      <div class="absolute left-3 top-1/2 -translate-y-1/2 text-amber-400"><i data-lucide="search" style="width:15px;height:15px"></i></div>
+      <input id="search-input" placeholder="Rechercher dans tout le monde…" class="w-full bg-white border border-amber-300 rounded-md pl-9 pr-3 py-2 text-sm placeholder-amber-400 outline-none focus:ring-2 focus:ring-red-200" />
+    </div>
+    <div id="search-results" class="hidden mb-10"></div>
+
+    <div id="category-grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4"></div>
+
+    <p class="text-xs text-amber-500 mt-10 max-w-2xl leading-relaxed">
+      Site hébergé : les données sont stockées dans le navigateur (localStorage) de chaque visiteur — elles ne sont pas partagées entre appareils tant qu'aucun backend (Firebase) n'est branché. Exporte régulièrement en JSON pour garder une sauvegarde.
+    </p>
+  </main>
+
+  <div id="drawer-overlay" class="fixed inset-0 bg-black/40 z-30 hidden"></div>
+  <div id="drawer" class="drawer-open hidden fixed inset-y-0 right-0 z-40 w-full max-w-md bg-white border-l border-amber-200 flex flex-col shadow-2xl"></div>
+
+  <script src="shared/data.js"></script>
+  <script src="shared/app.js"></script>
+  <script>
+    Store.load();
+
+    function countFor(key) { return Store.entities.filter((e) => e.category === key).length; }
+
+    function renderGrid() {
+      const grid = document.getElementById('category-grid');
+      grid.innerHTML = CATEGORIES.map((c) => {
+        const col = COLOR_MAP[c.color];
+        return `<a href="${c.page}" class="bg-white hover:bg-amber-50 border border-amber-200 border-l-4 ${col.left} rounded-r-lg rounded-l-sm p-5 transition-colors block">
+          <div class="flex items-center gap-2 mb-2">
+            <div class="${col.text}">${icon(c.icon, 20)}</div>
+            <h2 class="font-display text-lg text-amber-900">${esc(c.label)}</h2>
+          </div>
+          <p class="text-sm text-amber-500 font-mono">${countFor(c.key)} fiche${countFor(c.key) > 1 ? 's' : ''}</p>
+        </a>`;
+      }).join('');
+      refreshIcons();
+    }
+    renderGrid();
+
+    const searchInput = document.getElementById('search-input');
+    const resultsBox = document.getElementById('search-results');
+    searchInput.addEventListener('input', () => {
+      const q = searchInput.value.trim().toLowerCase();
+      if (!q) { resultsBox.classList.add('hidden'); resultsBox.innerHTML = ''; return; }
+      const results = Store.entities.filter((e) => e.name.toLowerCase().includes(q) || Object.values(e.fields).some((v) => String(v).toLowerCase().includes(q)));
+      resultsBox.classList.remove('hidden');
+      resultsBox.innerHTML = results.length === 0
+        ? emptyStateHtml(`Aucun résultat pour « ${searchInput.value} ».`)
+        : `<div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3">${results.map(cardHtml).join('')}</div>`;
+      refreshIcons();
+    });
+    resultsBox.addEventListener('click', (e) => {
+      const openId = e.target.closest('[data-open]');
+      if (openId) openDrawer(openId.getAttribute('data-open'));
+    });
+    window.__rerenderMain = renderGrid;
+  </script>
+</body>
+</html>
