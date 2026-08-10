@@ -11,7 +11,7 @@
 </script>
 <script src="https://cdn.tailwindcss.com"></script>
 <script src="https://unpkg.com/lucide@latest"></script>
-<link rel="stylesheet" href="style.css?v=2">
+<link rel="stylesheet" href="style.css?v=3">
 </head>
 <body class="h-screen w-full overflow-hidden bg-[#2a1310] text-[#f5e6d3]">
 
@@ -32,6 +32,7 @@
 <div id="app-root" class="hidden h-screen w-full flex flex-col md:flex-row">
 <div class="md:hidden flex items-center gap-2 overflow-x-auto px-3 py-2 border-b border-[#5c2e22] bg-[#2a1310] shrink-0">
 <a href="monde.html" class="flex items-center gap-1.5 px-3 py-1.5 rounded-md text-xs whitespace-nowrap border border-transparent text-[#b8916a]"><i data-lucide="map" style="width:13px;height:13px"></i> Monde & Géographie</a><a href="bestiaire.html" class="flex items-center gap-1.5 px-3 py-1.5 rounded-md text-xs whitespace-nowrap border border-transparent text-[#b8916a]"><i data-lucide="paw-print" style="width:13px;height:13px"></i> Bestiaire</a><a href="magie.html" class="flex items-center gap-1.5 px-3 py-1.5 rounded-md text-xs whitespace-nowrap border border-transparent bg-[#5c2e1f] text-[#f5e6d3]"><i data-lucide="sparkles" style="width:13px;height:13px"></i> Magie</a><a href="politique.html" class="flex items-center gap-1.5 px-3 py-1.5 rounded-md text-xs whitespace-nowrap border border-transparent text-[#b8916a]"><i data-lucide="crown" style="width:13px;height:13px"></i> Politique & Factions</a><a href="chronologie.html" class="flex items-center gap-1.5 px-3 py-1.5 rounded-md text-xs whitespace-nowrap border border-transparent text-[#b8916a]"><i data-lucide="clock" style="width:13px;height:13px"></i> Chronologie</a><a href="personnages.html" class="flex items-center gap-1.5 px-3 py-1.5 rounded-md text-xs whitespace-nowrap border border-transparent text-[#b8916a]"><i data-lucide="users" style="width:13px;height:13px"></i> Personnages</a>
+<button data-sign-out class="flex items-center gap-1.5 px-3 py-1.5 rounded-md text-xs whitespace-nowrap border border-[#6b3529] text-red-400 shrink-0 ml-auto"><i data-lucide="log-out" style="width:13px;height:13px"></i> Quitter</button>
 </div><aside class="hidden md:flex md:w-60 shrink-0 flex-col border-r border-[#5c2e22] bg-[#2a1310]">
     <a href="index.html" class="px-5 py-5 border-b border-[#5c2e22] flex items-center gap-3">
       <div class="w-9 h-9 shrink-0 rounded-sm bg-red-700 flex items-center justify-center text-white font-display text-base leading-none">界</div>
@@ -68,9 +69,6 @@
         </a>
     </nav>
     <div class="p-3 border-t border-[#5c2e22] space-y-2">
-      <button id="export-btn" class="w-full flex items-center justify-center gap-2 text-xs text-[#b8916a] hover:text-[#f0dcc4] bg-[#3d1e17] border border-[#6b3529] hover:border-[#8a4433] rounded-md py-2 transition-colors">
-        <i data-lucide="download" style="width:13px;height:13px"></i> Exporter en JSON
-      </button>
       <button data-sign-out class="w-full flex items-center justify-center gap-2 text-xs text-[#b8916a] hover:text-red-400 bg-[#3d1e17] border border-[#6b3529] hover:border-rose-300 rounded-md py-2 transition-colors">
         <i data-lucide="log-out" style="width:13px;height:13px"></i> Se déconnecter
       </button>
@@ -105,10 +103,10 @@
     <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-app-compat.js"></script>
   <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-auth-compat.js"></script>
   <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore-compat.js"></script>
-  <script src="firebase-init.js?v=2"></script>
-  <script src="gate.js?v=2"></script>
-  <script src="data.js?v=2"></script>
-  <script src="app.js?v=2"></script>
+  <script src="firebase-init.js?v=3"></script>
+  <script src="gate.js?v=3"></script>
+  <script src="data.js?v=3"></script>
+  <script src="app.js?v=3"></script>
   <script>initAuthGate(() => initCategoryPage('magie'));</script>
 </body>
 </html>
